@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import Pagination from '@mui/material/Pagination'
 import { Box, Stack, Typography } from '@mui/material'
@@ -30,7 +31,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
     }
 
     fetchExercisesData()
-  }, [bodyPart])
+  }, [bodyPart, setExercises])
 
   // Pagination
   const indexOfLastExercise = currentPage * exercisesPerPage
@@ -45,6 +46,24 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
     window.scrollTo({ top: 1800, behavior: 'smooth' })
   }
+
+  useEffect(() => {
+    const fetchExercisesData = async () => {
+      let exercisesData = []
+      if (bodyPart === 'all') {
+        exercisesData = await fetchData(
+          'https://exercisedb.p.rapidapi.com/exercises',
+          exerciseOptions
+        )
+      } else {
+        await fetchData(
+          `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
+          exerciseOptions
+        )
+      }
+      setExercises(exercisesData)
+    }
+  }, [bodyPart, setExercises])
 
   if (!currentExercises.length) return
 
