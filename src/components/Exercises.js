@@ -56,13 +56,14 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
           exerciseOptions
         )
       } else {
-        await fetchData(
+        exercisesData = await fetchData(
           `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
           exerciseOptions
         )
       }
       setExercises(exercisesData)
     }
+    fetchExercisesData()
   }, [bodyPart, setExercises])
 
   if (!currentExercises.length) return
