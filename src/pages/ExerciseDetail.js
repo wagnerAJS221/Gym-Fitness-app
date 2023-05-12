@@ -6,7 +6,6 @@ import { exerciseOptions, fetchData, youtubeOptions } from '../utils/fetchData'
 import Detail from '../components/Detail'
 import ExerciseVideos from '../components/ExerciseVideos'
 import SimilarExercises from '../components/SimilarExercises'
-import Footer from '../components/Footer'
 
 const ExerciseDetail = () => {
   const [exerciseDetail, setExerciseDetail] = useState({})
@@ -66,7 +65,6 @@ const ExerciseDetail = () => {
         targetMuscleExercises={targetMuscleExercises}
         equipmentExercises={equipmentExercises}
       />
-      <Footer />
     </Box>
   )
 }
